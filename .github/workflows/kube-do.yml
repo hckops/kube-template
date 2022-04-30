@@ -11,7 +11,7 @@ on:
 jobs:
   # how to manage simple cluster provisioning
   kube-do-provision-only:
-    name: Cluster
+    name: Simple provision
     runs-on: ubuntu-latest
     steps:
       - name: Provision
@@ -28,7 +28,7 @@ jobs:
   # TODO notifications
   # how to provision a cluster and bootstrap a platform
   kube-do-sample:
-    name: Cluster
+    name: Provision and bootstrap
     runs-on: ubuntu-latest
     steps:
       # required only to bootrap, not for provision
@@ -53,6 +53,7 @@ jobs:
         run: echo "Cluster status ${{ steps.provision.outputs.status }}"
       
       - name: Test
+        if: ${{ steps.provision.outputs.status == 'CREATE' }}"
         run: |
           whoami
           pwd
