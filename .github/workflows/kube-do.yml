@@ -1,0 +1,60 @@
+name: kube-do
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/kube-*.yml'
+      - 'clusters/kube-*.yaml'
+
+jobs:
+  # how to manage simple cluster provisioning
+  kube-do-provision-only:
+    name: Cluster
+    runs-on: ubuntu-latest
+    steps:
+      - name: Provision
+        uses: hckops/actions/kube-do-action@main
+        id: provision
+        with:
+          github-token: ${{ github.token }}
+          access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          config-path: clusters/kube-do-sample.yaml
+          enabled: false
+      - name: Status
+        run: echo "Cluster status ${{ steps.provision.outputs.status }}"
+
+  # TODO notifications
+  # how to provision a cluster and bootstrap a platform
+  kube-do-sample:
+    name: Cluster
+    runs-on: ubuntu-latest
+    steps:
+      # required only to bootrap, not for provision
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # TODO add tmp shared path to save kubeconfig (bootstrap)
+      - name: Provision
+        # TODO use tag e.g. v0.1.x
+        uses: hckops/actions/kube-do-action@main
+        id: provision
+        with:
+          github-token: ${{ github.token }}
+          access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          config-path: clusters/kube-do-sample.yaml
+          enabled: true
+          wait: true
+
+      # TODO use output CREATE|DELETE|UP|DOWN
+      # run bootstrap only if CREATE
+      - name: Status
+        run: echo "Cluster status ${{ steps.provision.outputs.status }}"
+      
+      - name: Test
+        run: |
+          whoami
+          pwd
+          ls -la /github/home/.kube/config
+          printenv
