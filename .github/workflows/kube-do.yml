@@ -31,6 +31,7 @@ jobs:
     name: Provision and bootstrap
     runs-on: ubuntu-latest
     steps:
+      # TODO test withouth IF public
       # required only to bootrap, not for provision
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,7 +46,8 @@ jobs:
           access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           config-path: clusters/kube-do-sample.yaml
           enabled: true
-          wait: true
+          # TODO test without and set to false
+          wait: false
 
       # TODO use output CREATE|DELETE|UP|DOWN
       # run bootstrap only if CREATE
@@ -53,9 +55,9 @@ jobs:
         run: echo "Cluster status ${{ steps.provision.outputs.status }}"
       
       - name: Test
-        if: ${{ steps.provision.outputs.status == 'CREATE' }}"
+        #if: ${{ steps.provision.outputs.status == 'CREATE' }}"
         run: |
           whoami
           pwd
-          ls -la /github/home/.kube/config
           printenv
+          ls -la /github/home/.kube/config
