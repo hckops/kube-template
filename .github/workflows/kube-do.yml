@@ -10,7 +10,7 @@ on:
 
 jobs:
   # EXAMPLE: how to manage simple cluster provisioning
-  kube-do-provision-only:
+  kube-do-provision-only-disabled:
     name: Simple provision
     runs-on: ubuntu-latest
     steps:
@@ -30,13 +30,11 @@ jobs:
     name: Provision and bootstrap
     runs-on: ubuntu-latest
     steps:
-      # TODO test without checkout IF public
-      # required only to bootstrap, not to provision
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Provision
-        # TODO use tag e.g. v0.1.x
+        # TODO use tag
         uses: hckops/actions/kube-do-action@main
         id: provision
         with:
@@ -49,24 +47,20 @@ jobs:
       - name: Output
         run: |
           echo "Status: ${{ steps.provision.outputs.status }}"
-          echo "Config: ${{ steps.provision.outputs.config }}"
+          echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
+      
+      - name: Bootstrap
+        # TODO this is NOT working ??? returns alway true
+        if: ${{ steps.provision.outputs.status == 'CREATE' }}"
+        # TODO use tag
+        uses: hckops/actions/bootstrap-action@main
+        with:
+          kubeconfig: ${{ steps.provision.outputs.kubeconfig }}
 
       - name: Notification
-        # TODO use tag e.g. v0.1.x
+        # TODO use tag
         uses: hckops/actions/discord-action@main
         with:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           message: "Cluster ${{ github.repository }}: ${{ steps.provision.outputs.status }}"
-
-      # TODO run bootstrap only if CREATE
-      # TODO see hckops-kube-sample-kubeconfig.yaml in root path
-      - name: Test
-        # TODO verify IF
-        if: ${{ steps.provision.outputs.status == 'CREATE' }}"
-        run: |
-          whoami
-          pwd
-          printenv
-          ls -la
-          ls -la $HOME
