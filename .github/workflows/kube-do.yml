@@ -9,23 +9,7 @@ on:
       - 'clusters/kube-*.yaml'
 
 jobs:
-  # EXAMPLE: how to manage simple cluster provisioning
-  kube-do-provision-only-disabled:
-    name: Simple provision
-    runs-on: ubuntu-latest
-    steps:
-      - name: Provision
-        uses: hckops/actions/kube-do-action@main
-        id: provision
-        with:
-          github-token: ${{ github.token }}
-          access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          config-path: clusters/kube-do-sample.yaml
-          enabled: false
-      - name: Status
-        run: echo "Cluster status ${{ steps.provision.outputs.status }}"
-
-  # EXAMPLE: how to provision a cluster and bootstrap a platform
+  # cluster provisioning and platform bootstrap
   kube-do-sample:
     name: Provision and bootstrap
     runs-on: ubuntu-latest
@@ -51,7 +35,7 @@ jobs:
       
       - name: Bootstrap
         # TODO this is NOT working ??? returns alway true
-        if: ${{ steps.provision.outputs.status == 'CREATE' }}"
+        if: ${{ steps.provision.outputs.status == 'CREATE' }}
         # TODO use tag
         uses: hckops/actions/bootstrap-action@main
         with:
