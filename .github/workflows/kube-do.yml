@@ -44,8 +44,7 @@ jobs:
           access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           config-path: clusters/kube-do-sample.yaml
           enabled: true
-          # TODO set to true
-          wait: false
+          wait: true
 
       - name: Output
         run: |
@@ -53,6 +52,7 @@ jobs:
           echo "Config: ${{ steps.provision.outputs.config }}"
 
       - name: Notification
+        # TODO use tag e.g. v0.1.x
         uses: hckops/actions/discord-action@main
         with:
           action: create-message
