@@ -1,4 +1,4 @@
-# kube-sample
+# kube-template
 
 Actions secrets
 * `DIGITALOCEAN_ACCESS_TOKEN`

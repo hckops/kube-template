@@ -53,16 +53,15 @@ jobs:
         with:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: "Cluster ${{ env.GITHUB_REPOSITORY }}: ${{ steps.provision.outputs.status }}"
+          message: "Cluster ${{ github.repository }}: ${{ steps.provision.outputs.status }}"
 
       - name: Output
         # TODO >>> do i need "echo" ???
         # TODO >>> print all ${{ steps.provision.outputs }} ???
         run: |
           echo "Status ${{ steps.provision.outputs.status }}"
-          echo "${{ steps.provision.outputs }}"
-          Config ${{ steps.provision.outputs.config }}
-          
+          echo "Config ${{ steps.provision.outputs.config }}"
+          echo "${{ steps.provision.outputs }}"          
 
       # TODO run bootstrap only if CREATE
       # TODO see hckops-kube-sample-kubeconfig.yaml in root path
