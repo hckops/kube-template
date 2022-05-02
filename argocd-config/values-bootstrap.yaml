@@ -1,0 +1,19 @@
+argocd:
+  configs:
+    secret:
+      createSecret: true
+      argocdServerAdminPassword: "INVALID_PASSWORD"
+    credentialTemplates:
+      # every repositories under the org (url match) will use the same credentials
+      ssh-creds:
+        url: git@github.com:hckops
+        sshPrivateKey: "INVALID_KEY"
+    # overridden in "values-repositories.yaml" when managed by argocd
+    repositories:
+      argo-repo:
+        url: https://argoproj.github.io/argo-helm
+        name: argo
+        type: helm
+      gitops-repo:
+        url: git@github.com:hckops/kube-template.git
+        name: gitops-repo

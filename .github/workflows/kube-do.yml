@@ -11,7 +11,7 @@ on:
 jobs:
   # cluster provisioning and platform bootstrap
   kube-do-sample:
-    name: Provision and bootstrap
+    name: Provision and Bootstrap
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,7 +25,6 @@ jobs:
           github-token: ${{ github.token }}
           access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           config-path: clusters/kube-do-sample.yaml
-          enabled: true
           wait: true
 
       - name: Output
@@ -34,7 +33,6 @@ jobs:
           echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
       
       - name: Bootstrap
-        # TODO this is NOT working ??? returns alway true
         if: ${{ steps.provision.outputs.status == 'CREATE' }}
         # TODO use tag
         uses: hckops/actions/bootstrap-action@main

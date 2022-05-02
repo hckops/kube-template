@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-config
+spec:
+  project: argocd
+  source:
+    repoURL: {{ .Values.repository.url }}
+    targetRevision: {{ .Values.repository.targetRevision }}
+    path: charts/argocd-config
+    # overrides https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-repositories.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      # forces the refresh if a timeout occurs during bootstrap and the app is in error
+      # a sync will be attempted again after self heal timeout (5 seconds by default)
+      selfHeal: true

@@ -1,0 +1,11 @@
+# requires helm 3
+apiVersion: v2
+name: argocd-config
+version: 0.1.0
+
+dependencies:
+  # https://github.com/argoproj/argo-cd/releases
+  - name: argo-cd
+    alias: argocd
+    version: 4.5.7
+    repository: https://argoproj.github.io/argo-helm

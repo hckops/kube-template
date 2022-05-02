@@ -1,0 +1,12 @@
+argocd:
+  configs:
+    repositories:
+      # bootstrap
+      argo-repo:
+        url: https://argoproj.github.io/argo-helm
+        name: argo
+        type: helm
+      gitops-repo:
+        url: git@github.com:hckops/kube-template.git
+        name: gitops-repo
+      # other
