@@ -1,9 +1,8 @@
 # kube-template
 
-> *Spin-up a platform with a git push!*
+[![kube-do](https://github.com/hckops/kube-template/actions/workflows/kube-do.yml/badge.svg)](https://github.com/hckops/kube-template/actions/workflows/kube-do.yml)
 
-Supported cloud providers
-* [DigitalOcean](https://cloud.digitalocean.com)
+> *Spin-up a platform with a git push!*
 
 Setup steps
 1. Create a new repository from this [template](https://github.com/hckops/kube-template/generate)
@@ -17,11 +16,12 @@ Setup steps
     grep -Rl --exclude=*.md --exclude-dir=.git ${OLD_REPOSITORY} . | xargs \
       sed -i "s|${OLD_REPOSITORY}|${NEW_REPOSITORY}|g"
     ```
-3. Add these action secrets, for more info see [hckops/actions](https://github.com/hckops/actions)
-    - `DIGITALOCEAN_ACCESS_TOKEN`
-    - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD`
-    - `DISCORD_WEBHOOK_URL` (optional)
-4. Provision a DigitalOcean cluster and bootstrap the sample platform by committing and pushing these changes
+3. Add the following action secrets
+    * `DIGITALOCEAN_ACCESS_TOKEN` required for cluster provisioning with [DigitalOcean](https://cloud.digitalocean.com)
+    - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this sample platform
+    - `DISCORD_WEBHOOK_URL` optional. to notify the status on a Discord channel
+    - for more info see [kube-do](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
+4. Update the cluster definition and push the changes
     ```diff
     # clusters/kube-do-sample.yaml
     + status: UP
