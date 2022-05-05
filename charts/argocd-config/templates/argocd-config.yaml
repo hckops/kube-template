@@ -13,6 +13,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+        - values-auth.yaml
         - values-repositories.yaml
   destination:
     server: https://kubernetes.default.svc

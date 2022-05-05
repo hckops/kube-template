@@ -1,0 +1,7 @@
+argocd:
+  configs:
+    secret:
+      # TODO disable admin access
+      # TODO setup SSO
+      # use admin password created manually during bootstrap
+      createSecret: false
