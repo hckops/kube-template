@@ -8,6 +8,9 @@ on:
       - '.github/workflows/kube-do.yml'
       - 'clusters/kube-do-*.yaml'
 
+env:
+  BOOTSTRAP_ONLY: true
+
 jobs:
   # cluster provisioning and platform bootstrap
   kube-do-sample:
@@ -28,7 +31,7 @@ jobs:
           enabled: true
           wait: true
           # development only: when true bootstrap without provisioning
-          skip: true
+          skip: ${{ env.BOOTSTRAP_ONLY }}
 
       - name: Output
         run: |
@@ -37,7 +40,7 @@ jobs:
           echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
       
       - name: Bootstrap
-        if: ${{ steps.provision.outputs.status == 'CREATE' || steps.provision.inputs.skip == 'true' }}
+        if: ${{ steps.provision.outputs.status == 'CREATE' }} || ${{ env.BOOTSTRAP_ONLY }}
         # TODO use tag
         uses: hckops/actions/bootstrap-action@main
         with:
