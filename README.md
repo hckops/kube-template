@@ -34,4 +34,16 @@ Setup
     - status: DOWN
     ```
 5. Wait... :rocket:
-6. TODO kube-forward + url
+6. TODO
+    ```bash
+    docker run --rm -p 8080:8080 --name hck-kube -it hckops/kube-do
+
+    DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
+    CLUSTER_NAME=<MY_CLUSTER_NAME>
+    doctl auth init --access-token ${DIGITALOCEAN_ACCESS_TOKEN}
+    doctl kubernetes cluster kubeconfig save ${CLUSTER_NAME}
+    KUBECONFIG=/root/.kube/config
+
+    doctl kubernetes cluster kubeconfig show ${CLUSTER_NAME} --access-token ${DIGITALOCEAN_ACCESS_TOKEN} > "${CLUSTER_NAME}-kubeconfig.yaml"
+    kubectl --kubeconfig "${CLUSTER_NAME}-kubeconfig.yaml" port-forward svc/argocd-server -n argocd 8080:443
+    ```
