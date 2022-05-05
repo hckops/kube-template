@@ -9,7 +9,8 @@ on:
       - 'clusters/kube-do-*.yaml'
 
 env:
-  BOOTSTRAP_ONLY: true
+  # for development only: when true bootstrap without provisioning
+  BOOTSTRAP_ONLY: false
 
 jobs:
   # cluster provisioning and platform bootstrap
@@ -30,7 +31,6 @@ jobs:
           config-path: clusters/kube-do-sample.yaml
           enabled: true
           wait: true
-          # development only: when true bootstrap without provisioning
           skip: ${{ env.BOOTSTRAP_ONLY }}
 
       - name: Output
@@ -39,14 +39,14 @@ jobs:
           echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
       
       - name: Bootstrap
-        if: ${{ steps.provision.outputs.status == 'CREATE' }} || ${{ env.BOOTSTRAP_ONLY }}
+        if: ${{ steps.provision.outputs.status == 'CREATE' || env.BOOTSTRAP_ONLY }}
         # TODO use tag
         uses: hckops/actions/bootstrap-action@main
         with:
           gitops-ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
           argocd-admin-password: ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
           kubeconfig: ${{ steps.provision.outputs.kubeconfig }}
-          chart-path: ./argocd-config
+          chart-path: ./charts/argocd-config
           version: HEAD
 
       - name: Notification
