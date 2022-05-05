@@ -19,7 +19,7 @@ Setup
 3. Add the following action secrets
     * `DIGITALOCEAN_ACCESS_TOKEN` required for cluster provisioning with [DigitalOcean](https://cloud.digitalocean.com)
     - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this sample platform
-    - `DISCORD_WEBHOOK_URL` optional, to notify the status on a Discord channel
+    - `DISCORD_WEBHOOK_URL` optional, to notify the status in a Discord channel
     - for more info see [kube-do](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
 4. Override the credential template with the right owner
     ```diff

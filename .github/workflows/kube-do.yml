@@ -9,7 +9,7 @@ on:
       - 'clusters/kube-do-*.yaml'
 
 env:
-  # for development only: when true bootstrap without provisioning
+  # for development only: if "true" bootstrap without provisioning
   BOOTSTRAP_ONLY: false
 
 jobs:
