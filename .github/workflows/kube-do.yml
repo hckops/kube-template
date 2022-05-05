@@ -36,7 +36,8 @@ jobs:
           echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
       
       - name: Bootstrap
-        if: ${{ steps.provision.outputs.status == 'CREATE' }}
+        # TODO skip provision
+        #if: ${{ steps.provision.outputs.status == 'CREATE' }}
         # TODO use tag
         uses: hckops/actions/bootstrap-action@main
         with:
