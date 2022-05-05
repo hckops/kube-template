@@ -27,7 +27,7 @@ Setup
     + argocd.configs.credentialTemplates.ssh-creds.url: <OWNER_OR_REPOSITORY>
     - argocd.configs.credentialTemplates.ssh-creds.url: git@github.com:hckops
     ```
-4. Update the cluster definition and push the all changes
+4. Update the cluster definition and push all the changes
     ```diff
     # clusters/kube-do-sample.yaml
     + status: UP
