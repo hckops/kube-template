@@ -35,7 +35,6 @@ jobs:
 
       - name: Output
         run: |
-          echo "provision: ${{ toJSON(steps) }}"
           echo "Status: ${{ steps.provision.outputs.status }}"
           echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
       
