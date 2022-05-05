@@ -4,7 +4,7 @@
 
 > *Spin-up a platform with a git push!*
 
-Setup steps
+Setup
 1. Create a new repository from this [template](https://github.com/hckops/kube-template/generate)
     - it works both with Public and Private repositories
     - naming convention: `kube-???` or `???-k8s`
@@ -19,12 +19,19 @@ Setup steps
 3. Add the following action secrets
     * `DIGITALOCEAN_ACCESS_TOKEN` required for cluster provisioning with [DigitalOcean](https://cloud.digitalocean.com)
     - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this sample platform
-    - `DISCORD_WEBHOOK_URL` optional. to notify the status on a Discord channel
+    - `DISCORD_WEBHOOK_URL` optional, to notify the status on a Discord channel
     - for more info see [kube-do](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
-4. Update the cluster definition and push the changes
+4. Override the credential template with the right owner
+    ```diff
+    # argocd-config/values-bootstrap.yaml
+    + argocd.configs.credentialTemplates.ssh-creds.url: <OWNER_OR_REPOSITORY>
+    + argocd.configs.credentialTemplates.ssh-creds.url: git@github.com:hckops
+    ```
+4. Update the cluster definition and push the all changes
     ```diff
     # clusters/kube-do-sample.yaml
     + status: UP
     - status: DOWN
     ```
-5. TODO kube-forward + url
+5. Wait... :rocket:
+6. TODO kube-forward + url
