@@ -27,7 +27,7 @@ jobs:
           config-path: clusters/kube-do-sample.yaml
           enabled: true
           wait: true
-          # development only
+          # development only: when true bootstrap without provisioning
           skip: true
 
       - name: Output
@@ -36,8 +36,7 @@ jobs:
           echo "KubeConfig: ${{ steps.provision.outputs.kubeconfig }}"
       
       - name: Bootstrap
-        # TODO skip provision
-        #if: ${{ steps.provision.outputs.status == 'CREATE' }}
+        if: ${{ steps.provision.outputs.status == 'CREATE' || steps.provision.inputs.skip == 'true' }}
         # TODO use tag
         uses: hckops/actions/bootstrap-action@main
         with:
