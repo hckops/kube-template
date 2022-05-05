@@ -25,7 +25,7 @@ Setup
     ```diff
     # argocd-config/values-bootstrap.yaml
     + argocd.configs.credentialTemplates.ssh-creds.url: <OWNER_OR_REPOSITORY>
-    + argocd.configs.credentialTemplates.ssh-creds.url: git@github.com:hckops
+    - argocd.configs.credentialTemplates.ssh-creds.url: git@github.com:hckops
     ```
 4. Update the cluster definition and push the all changes
     ```diff
