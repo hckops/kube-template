@@ -41,7 +41,7 @@ jobs:
       - name: Bootstrap
         if: ${{ steps.provision.outputs.status == 'CREATE' }} || ${{ env.BOOTSTRAP_ONLY }}
         # TODO use tag
-        uses: hckops/actions/bootstrap-action@main
+        uses: hckops/actions/bootstrap-action@1dd43f3789473b8e7e9852927ea79b52286fb610
         with:
           gitops-ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
           argocd-admin-password: ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
