@@ -1,6 +1,6 @@
 # kube-template
 
-Spin-up a platform with a git push!
+> *Spin-up a platform with a git push!*
 
 Supported cloud providers
 * [DigitalOcean](https://cloud.digitalocean.com)
