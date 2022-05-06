@@ -28,7 +28,7 @@ jobs:
           enabled: true
           wait: true
           # for development only: if "true" bootstrap without provisioning
-          skip: true
+          skip: false
 
       - name: Output
         run: |
