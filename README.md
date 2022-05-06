@@ -47,3 +47,7 @@ Setup
     doctl kubernetes cluster kubeconfig show ${CLUSTER_NAME} --access-token ${DIGITALOCEAN_ACCESS_TOKEN} > "${CLUSTER_NAME}-kubeconfig.yaml"
     kubectl --kubeconfig "${CLUSTER_NAME}-kubeconfig.yaml" port-forward svc/argocd-server -n argocd 8080:443
     ```
+
+TODO
+* kube forward doesn't work in docker
+* notify in discord action builds
