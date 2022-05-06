@@ -47,6 +47,8 @@ jobs:
           version: HEAD
 
       - name: Notification
+        # notify also if previous steps failed
+        if: ${{ always() }}
         # TODO use tag
         uses: hckops/actions/discord-action@main
         with:
