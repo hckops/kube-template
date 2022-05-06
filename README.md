@@ -40,7 +40,3 @@ Setup
     # [admin|argocd] https://localhost:8080
     make forward-argocd name=do-sample token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
-
-TODO
-* kube forward doesn't work in docker
-* notify in discord action builds
