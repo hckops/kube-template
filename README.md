@@ -28,13 +28,13 @@ Setup
     - argocd.configs.credentialTemplates.ssh-creds.url: git@github.com:hckops
     ```
 5. Add the following action secrets
-    * `DIGITALOCEAN_ACCESS_TOKEN` required for cluster provisioning with [DigitalOcean](https://cloud.digitalocean.com)
-    - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this sample platform
+    * `DIGITALOCEAN_ACCESS_TOKEN` required to privision a cluster with [DigitalOcean](https://cloud.digitalocean.com)
+    - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this platform
     - `DISCORD_WEBHOOK_URL` optional, to notify the status in a Discord channel
     - for more info see [kube-do](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
 6. Update the cluster definition and push all the changes
     ```diff
-    # clusters/kube-do-sample.yaml
+    # clusters/kube-do-<CLUSTER_NAME>.yaml
     + status: UP
     - status: DOWN
     ```
