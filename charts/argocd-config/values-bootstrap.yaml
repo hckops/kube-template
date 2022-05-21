@@ -12,5 +12,5 @@ argocd:
         sshPrivateKey: "INVALID_KEY"
     repositories:
       gitops-repo:
-        url: git@github.com:hckops/kube-core.git
+        url: git@github.com:hckops/kube-template.git
         name: gitops-repo
