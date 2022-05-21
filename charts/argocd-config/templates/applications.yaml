@@ -8,6 +8,7 @@ spec:
   source:
     repoURL: {{ .Values.repository.url }}
     targetRevision: {{ .Values.repository.targetRevision }}
+    # app of apps pattern
     path: applications
   destination:
     server: https://kubernetes.default.svc

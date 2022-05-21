@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops
+spec:
+  project: examples
+  source:
+    repoURL: https://github.com/paulbouwer/hello-kubernetes.git
+    # helm chart
+    path: deploy/helm/hello-kubernetes
+    targetRevision: {{ .Values.versions.examples.helloKubernetes.gitRepo }}
+    # overrides https://github.com/paulbouwer/hello-kubernetes/blob/main/deploy/helm/hello-kubernetes/values.yaml
+    helm:
+      parameters:
+      - name: ingress.configured
+        value: "true"
+      - name: service.type
+        value: "ClusterIP"
+      - name: message
+        value: "Hello GitOps!"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: examples

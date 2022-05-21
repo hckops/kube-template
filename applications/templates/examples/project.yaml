@@ -2,10 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: guestbook
+  name: examples
 spec:
   sourceRepos:
     - https://github.com/argoproj/argocd-example-apps.git
+    - https://github.com/paulbouwer/hello-kubernetes.git
   destinations:
-    - namespace: guestbook
+    - namespace: examples
       server: https://kubernetes.default.svc

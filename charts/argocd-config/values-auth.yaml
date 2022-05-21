@@ -1,5 +1,5 @@
 argocd:
   configs:
     secret:
-      # use admin password created manually during bootstrap
+      # prevents creation of default admin password: set manually during bootstrap
       createSecret: false

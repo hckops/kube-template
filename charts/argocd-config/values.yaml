@@ -4,10 +4,6 @@ repository:
   targetRevision: HEAD
 
 argocd:
-  global:
-    image:
-      # default is chart appVersion
-      tag: v2.3.3
   configs:
     knownHosts:
       data:

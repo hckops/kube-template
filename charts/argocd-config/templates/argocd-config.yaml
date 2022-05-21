@@ -1,5 +1,6 @@
 ---
 apiVersion: argoproj.io/v1alpha1
+# example https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
 kind: Application
 metadata:
   name: argocd-config
@@ -11,10 +12,10 @@ spec:
     path: charts/argocd-config
     # overrides https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml
     helm:
+      # excludes "values-bootstrap.yaml"
       valueFiles:
         - values.yaml
         - values-auth.yaml
-        - values-repositories.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

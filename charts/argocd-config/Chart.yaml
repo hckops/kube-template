@@ -7,5 +7,5 @@ dependencies:
   # https://github.com/argoproj/argo-cd/releases
   - name: argo-cd
     alias: argocd
-    version: 4.5.9
+    version: 4.6.2
     repository: https://argoproj.github.io/argo-helm

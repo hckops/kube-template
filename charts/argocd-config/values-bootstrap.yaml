@@ -1,19 +1,16 @@
+# IMPORTANT: these overriddes are NOT managed by argocd and applied only once
+# see https://github.com/hckops/actions/blob/main/bootstrap-action/entrypoint.sh
 argocd:
   configs:
     secret:
       createSecret: true
       argocdServerAdminPassword: "INVALID_PASSWORD"
     credentialTemplates:
-      # every repositories under the org (url match) will use the same credentials
+      # every repositories in the same org (url match) will use this credential
       ssh-creds:
         url: git@github.com:hckops
         sshPrivateKey: "INVALID_KEY"
-    # overridden in "values-repositories.yaml" when managed by argocd
     repositories:
-      argo-repo:
-        url: https://argoproj.github.io/argo-helm
-        name: argo
-        type: helm
       gitops-repo:
-        url: git@github.com:hckops/kube-template.git
+        url: git@github.com:hckops/kube-core.git
         name: gitops-repo

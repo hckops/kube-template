@@ -4,11 +4,12 @@ kind: Application
 metadata:
   name: guestbook
 spec:
-  project: guestbook
+  project: examples
   source:
     repoURL: https://github.com/argoproj/argocd-example-apps.git
+    # plain yaml
     path: guestbook
-    targetRevision: HEAD
+    targetRevision: {{ .Values.versions.examples.guestbook.gitRepo }}
   destination:
     server: https://kubernetes.default.svc
-    namespace: guestbook
+    namespace: examples

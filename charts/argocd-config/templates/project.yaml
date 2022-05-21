@@ -14,5 +14,15 @@ spec:
     - namespace: argocd
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    # fixes "Resource rbac.authorization.k8s.io:ClusterRole is not permitted in project argocd."
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    # fixes "Resource rbac.authorization.k8s.io:ClusterRoleBinding is not permitted in project argocd."
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+    # fixes "Resource apiextensions.k8s.io:CustomResourceDefinition is not permitted in project argocd."
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+    # fixes "Resource :Namespace is not permitted in project argocd."
+    - group: ''
+      kind: Namespace
