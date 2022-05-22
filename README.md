@@ -7,7 +7,7 @@
 Setup
 1. Create a new repository from this [template](https://github.com/hckops/kube-template/generate)
     - it works both with Public and Private repositories
-    - naming convention: `kube-???` or `???-k8s`
+    - naming convention: `kube-<CLUSTER_NAME>` or `<CLUSTER_NAME>-k8s`
 2. Replace repository URL
     ```bash
     OLD_REPOSITORY=git@github.com:hckops/kube-template.git
@@ -43,13 +43,16 @@ Setup
     ```bash
     DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
 
-    # [admin|argocd] https://localhost:8080
+    # https://localhost:8080
+    # [admin|<ARGOCD_ADMIN_PASSWORD>]
     make forward-argocd name=do-sample token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
 9. Sample apps
     ```bash
     # https://localhost:8090
-    kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples port-forward svc/guestbook-ui 8090:80
+    kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples \
+      port-forward svc/guestbook-ui 8090:80
     # https://localhost:8091
-    kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples port-forward svc/hello-kubernetes-gitops 8091:80
+    kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples \
+      port-forward svc/hello-kubernetes-gitops 8091:80
     ```
