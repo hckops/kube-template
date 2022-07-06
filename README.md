@@ -31,7 +31,7 @@ Setup
     * `DIGITALOCEAN_ACCESS_TOKEN` required to privision a cluster with [DigitalOcean](https://cloud.digitalocean.com)
     - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this platform with [ArgoCD](https://argo-cd.readthedocs.io/en/stable)
     - `DISCORD_WEBHOOK_URL` optional, to notify the status in a Discord channel
-    - for more info see [kube-do](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
+    - for more info see [workflow](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
 6. Update the cluster definition and push all the changes
     ```diff
     # clusters/kube-do-<CLUSTER_NAME>.yaml
@@ -42,6 +42,9 @@ Setup
 8. Connect to ArgoCD
     ```bash
     DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
+
+    # download kubeconfig
+    make kube-config name=do-sample token=${DIGITALOCEAN_ACCESS_TOKEN}
 
     # https://localhost:8080
     # [admin|<ARGOCD_ADMIN_PASSWORD>]

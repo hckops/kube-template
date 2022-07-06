@@ -4,8 +4,8 @@ name: argocd-config
 version: 0.1.0
 
 dependencies:
-  # https://github.com/argoproj/argo-cd/releases
+  # https://github.com/argoproj/argo-helm/releases?q=argo-cd
   - name: argo-cd
     alias: argocd
-    version: 4.6.2
+    version: 4.9.11
     repository: https://argoproj.github.io/argo-helm
