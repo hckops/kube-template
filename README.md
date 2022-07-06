@@ -50,7 +50,9 @@ Setup
     # [admin|<ARGOCD_ADMIN_PASSWORD>]
     make forward-argocd name=do-sample token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
+
 ![argocd-ui](argocd-ui.png)
+
 9. Sample apps
     ```bash
     # https://localhost:8090
