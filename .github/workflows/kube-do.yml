@@ -17,6 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # TODO version
+      - name: Helm Lint
+        uses: hckops/actions/helm-lint-action@main
+
       - name: Provision
         uses: hckops/actions/kube-do-action@v0.4.1
         id: provision
