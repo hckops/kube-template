@@ -9,7 +9,7 @@ spec:
     repoURL: https://github.com/argoproj/argocd-example-apps.git
     # plain yaml
     path: guestbook
-    targetRevision: {{ .Values.versions.examples.guestbook.gitRepo }}
+    targetRevision: { .Values.versions.examples.guestbook.gitRepo }}
   destination:
     server: https://kubernetes.default.svc
     namespace: examples
