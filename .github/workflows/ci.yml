@@ -1,0 +1,15 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: Continuos Integration
+    runs-on: ubuntu-latest
+    steps:
+      # TODO version
+      - name: Helm Lint
+        uses: hckops/actions/helm-lint-action@main
