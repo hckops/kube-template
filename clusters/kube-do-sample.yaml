@@ -1,10 +1,10 @@
 version: 1
 name: do-sample
 provider: digitalocean
-status: DOWN
+status: UP
 
 config:
   region: lon1
-  # https://docs.digitalocean.com/products/kubernetes/#allocatable-memory
+  # https://slugs.do-api.dev
   size: s-1vcpu-2gb
   count: 1
