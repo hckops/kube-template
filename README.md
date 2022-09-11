@@ -55,11 +55,11 @@ Setup
 
 9. Sample apps
     ```bash
-    # https://localhost:8090
+    # http://localhost:8090
     kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples \
       port-forward svc/guestbook-ui 8090:80
 
-    # https://localhost:8091
+    # http://localhost:8091
     kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples \
       port-forward svc/hello-kubernetes-gitops 8091:80
     ```
