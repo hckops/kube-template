@@ -18,12 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # TODO version
       - name: Helm Lint
-        uses: hckops/actions/helm-lint-action@main
+        uses: hckops/actions/helm-lint-action@v0.5.0
 
       - name: Provision
-        uses: hckops/actions/kube-do-action@v0.4.1
+        uses: hckops/actions/kube-do-action@v0.5.0
         id: provision
         with:
           github-token: ${{ github.token }}
@@ -41,7 +40,7 @@ jobs:
       
       - name: Bootstrap
         if: ${{ steps.provision.outputs.status == 'CREATE' }}
-        uses: hckops/actions/bootstrap-action@v0.4.1
+        uses: hckops/actions/bootstrap-action@v0.5.0
         with:
           gitops-ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
           argocd-admin-password: ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
@@ -52,7 +51,7 @@ jobs:
       - name: Notification
         # notify also if previous steps failed
         if: ${{ always() }}
-        uses: hckops/actions/discord-action@v0.4.1
+        uses: hckops/actions/discord-action@v0.5.0
         with:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
