@@ -13,6 +13,7 @@ jobs:
   kube-do-sample:
     name: Provision and Bootstrap
     runs-on: ubuntu-latest
+    # makes sure it doesn't finish the minutes quota if stalls
     timeout-minutes: 15
     steps:
       - name: Checkout
@@ -30,7 +31,7 @@ jobs:
           config-path: clusters/kube-do-sample.yaml
           enabled: true
           wait: true
-          # for development only: if "true" bootstrap without provisioning
+          # for development only: if "true" bootstrap skipping cluster creation
           skip: false
 
       - name: Output
