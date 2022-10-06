@@ -13,6 +13,9 @@ check-param-%:
 ##############################
 
 CLUSTER_NAME := test-do-lon1
+KUBECONFIG_NAME := $(CLUSTER_NAME)-kubeconfig.yaml
+
+##############################
 
 .PHONY: cluster-workflow
 cluster-workflow: check-param-from check-param-to check-param-status
@@ -29,10 +32,12 @@ cluster-up:
 cluster-down:
 	@make cluster-workflow name=$(CLUSTER_NAME) from=UP to=DOWN status=STOP
 
+##############################
+
 .PHONY: kube-config
 kube-config: require-doctl check-param-token
-	doctl kubernetes cluster kubeconfig show $(CLUSTER_NAME) --access-token ${token} > "$(CLUSTER_NAME)-kubeconfig.yaml"
+	@doctl kubernetes cluster kubeconfig show $(CLUSTER_NAME) --access-token ${token} > $(KUBECONFIG_NAME)
 
 .PHONY: forward-argocd
 forward-argocd: require-kubectl kube-config
-	kubectl --kubeconfig "$(CLUSTER_NAME)-kubeconfig.yaml" port-forward svc/argocd-server -n argocd 8080:443
+	kubectl --kubeconfig $(KUBECONFIG_NAME) port-forward svc/argocd-server -n argocd 8080:443
