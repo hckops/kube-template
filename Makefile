@@ -31,7 +31,7 @@ cluster-down:
 
 .PHONY: kube-config
 kube-config: require-doctl check-param-token
-	@doctl kubernetes cluster kubeconfig show $(CLUSTER_NAME) --access-token ${token} > "$(CLUSTER_NAME)-kubeconfig.yaml"
+	doctl kubernetes cluster kubeconfig show $(CLUSTER_NAME) --access-token ${token} > "$(CLUSTER_NAME)-kubeconfig.yaml"
 
 .PHONY: forward-argocd
 forward-argocd: require-kubectl kube-config
