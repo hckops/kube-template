@@ -8,9 +8,12 @@ on:
       - '.github/workflows/kube-do.yml'
       - 'clusters/kube-*.yaml'
 
+env:
+  CLUSTER_CONFIG_PATH: clusters/kube-test-do-lon1.yaml
+
 jobs:
   # cluster provisioning and platform bootstrap
-  kube-test-do-lon1:
+  kube-do:
     name: Provision and Bootstrap
     runs-on: ubuntu-latest
     # makes sure it doesn't finish the minutes quota if stalls
@@ -28,7 +31,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          config-path: clusters/kube-test-do-lon1.yaml
+          config-path: ${{ env.CLUSTER_CONFIG_PATH }}
           enabled: true
           wait: true
           # for development only: if "true" bootstrap skipping cluster creation
@@ -46,7 +49,7 @@ jobs:
           gitops-ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
           argocd-admin-password: ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
           kubeconfig: ${{ steps.provision.outputs.kubeconfig }}
-          config-path: clusters/kube-test-do-lon1.yaml
+          config-path: ${{ env.CLUSTER_CONFIG_PATH }}
           chart-path: ./charts/argocd-config
           version: HEAD
 

@@ -12,6 +12,13 @@ check-param-%:
 
 ##############################
 
+.PHONY: cluster-up
+cluster-up: check-param-name
+	sed -i 's/status: DOWN/status: UP/g' "clusters/kube-${name}.yaml"
+	git --no-pager diff
+	git commit -am "START cluster"
+	git push origin main
+
 .PHONY: kube-config
 kube-config: require-doctl check-param-name check-param-token
 	@doctl kubernetes cluster kubeconfig show ${name} --access-token ${token} > "${name}-kubeconfig.yaml"

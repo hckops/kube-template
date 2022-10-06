@@ -38,6 +38,10 @@ Setup
     + status: UP
     - status: DOWN
     ```
+    or simply by running
+    ```bash
+    make cluster-up name=test-do-lon1
+    ```
 7. Wait... :rocket:
 8. Connect to ArgoCD
     ```bash
