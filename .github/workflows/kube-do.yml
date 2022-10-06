@@ -6,11 +6,11 @@ on:
       - main
     paths:
       - '.github/workflows/kube-do.yml'
-      - 'clusters/kube-do-*.yaml'
+      - 'clusters/kube-*.yaml'
 
 jobs:
   # cluster provisioning and platform bootstrap
-  kube-do-sample:
+  kube-test-do-lon1:
     name: Provision and Bootstrap
     runs-on: ubuntu-latest
     # makes sure it doesn't finish the minutes quota if stalls
@@ -20,15 +20,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Helm Lint
-        uses: hckops/actions/helm-lint-action@v0.5.2
+        uses: hckops/actions/helm-lint-action@main
 
       - name: Provision
-        uses: hckops/actions/kube-do-action@v0.5.2
+        uses: hckops/actions/kube-do-action@main
         id: provision
         with:
           github-token: ${{ github.token }}
           access-token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          config-path: clusters/kube-do-sample.yaml
+          config-path: clusters/kube-test-do-lon1.yaml
           enabled: true
           wait: true
           # for development only: if "true" bootstrap skipping cluster creation
@@ -41,18 +41,19 @@ jobs:
       
       - name: Bootstrap
         if: ${{ steps.provision.outputs.status == 'CREATE' }}
-        uses: hckops/actions/bootstrap-action@v0.5.2
+        uses: hckops/actions/bootstrap-action@main
         with:
           gitops-ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
           argocd-admin-password: ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
           kubeconfig: ${{ steps.provision.outputs.kubeconfig }}
+          config-path: clusters/kube-test-do-lon1.yaml
           chart-path: ./charts/argocd-config
           version: HEAD
 
       - name: Notification
         # notify also if previous steps failed
         if: ${{ always() }}
-        uses: hckops/actions/discord-action@v0.5.2
+        uses: hckops/actions/discord-action@main
         with:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}

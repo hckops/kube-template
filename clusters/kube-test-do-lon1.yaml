@@ -1,0 +1,10 @@
+version: 1
+name: test-do-lon1
+provider: digitalocean
+status: DOWN
+
+digitalocean:
+  cluster:
+    count: 1
+    region: lon1
+    size: s-1vcpu-2gb

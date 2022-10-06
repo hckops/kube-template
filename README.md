@@ -16,10 +16,10 @@ Setup
     grep -Rl --exclude=*.md --exclude-dir=.git ${OLD_REPOSITORY} . | xargs \
       sed -i "s|${OLD_REPOSITORY}|${NEW_REPOSITORY}|g"
     ```
-3. Rename cluster name and definition `clusters/kube-do-<CLUSTER_NAME>.yaml`
+3. Rename cluster name and definition `clusters/kube-<CLUSTER_NAME>.yaml`
     ```bash
-    grep -Rl --exclude-dir=.git "do-sample" . | xargs \
-      sed -i "s|sample|<CLUSTER_NAME>|g"
+    grep -Rl --exclude-dir=.git "test-do-lon1" . | xargs \
+      sed -i "s|test-do-lon1|<CLUSTER_NAME>|g"
     ```
 4. Override the credential template with the right owner
     ```diff
@@ -34,7 +34,7 @@ Setup
     - for more info see [workflow](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
 6. Update the cluster definition and push all the changes
     ```diff
-    # clusters/kube-do-<CLUSTER_NAME>.yaml
+    # clusters/kube-<CLUSTER_NAME>.yaml
     + status: UP
     - status: DOWN
     ```
@@ -44,11 +44,11 @@ Setup
     DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
 
     # download kubeconfig
-    make kube-config name=do-sample token=${DIGITALOCEAN_ACCESS_TOKEN}
+    make kube-config name=test-do-lon1 token=${DIGITALOCEAN_ACCESS_TOKEN}
 
     # https://localhost:8080
     # [admin|<ARGOCD_ADMIN_PASSWORD>]
-    make forward-argocd name=do-sample token=${DIGITALOCEAN_ACCESS_TOKEN}
+    make forward-argocd name=test-do-lon1 token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
 
 ![argocd-ui](argocd-ui.png)
@@ -56,10 +56,10 @@ Setup
 9. Sample apps
     ```bash
     # http://localhost:8090
-    kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples \
+    kubectl --kubeconfig test-do-lon1-kubeconfig.yaml -n examples \
       port-forward svc/guestbook-ui 8090:80
 
     # http://localhost:8091
-    kubectl --kubeconfig do-sample-kubeconfig.yaml -n examples \
+    kubectl --kubeconfig test-do-lon1-kubeconfig.yaml -n examples \
       port-forward svc/hello-kubernetes-gitops 8091:80
     ```
