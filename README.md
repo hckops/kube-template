@@ -38,9 +38,9 @@ Setup
     + status: UP
     - status: DOWN
     ```
-    or simply by running
+    or simply start the cluster by running
     ```bash
-    make cluster-up name=test-do-lon1
+    make cluster-up
     ```
 7. Wait... :rocket:
 8. Connect to ArgoCD
@@ -48,11 +48,11 @@ Setup
     DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
 
     # download kubeconfig
-    make kube-config name=test-do-lon1 token=${DIGITALOCEAN_ACCESS_TOKEN}
+    make kube-config token=${DIGITALOCEAN_ACCESS_TOKEN}
 
     # https://localhost:8080
     # [admin|<ARGOCD_ADMIN_PASSWORD>]
-    make forward-argocd name=test-do-lon1 token=${DIGITALOCEAN_ACCESS_TOKEN}
+    make forward-argocd token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
 
 ![argocd-ui](argocd-ui.png)
