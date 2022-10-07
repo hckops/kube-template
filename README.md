@@ -38,7 +38,7 @@ Setup
     + status: UP
     - status: DOWN
     ```
-    or simply start the cluster by running
+    or simply create the cluster by running
     ```bash
     make cluster-up
     ```
@@ -81,4 +81,8 @@ Setup
     kubens argocd
     kubectl get applications
     argocd app list
+    ```
+11. Destroy the cluster
+    ```bash
+    make cluster-down
     ```
