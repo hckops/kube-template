@@ -1,7 +1,7 @@
 version: 1
 name: test-do-lon1
 provider: digitalocean
-status: UP
+status: DOWN
 
 digitalocean:
   cluster:
