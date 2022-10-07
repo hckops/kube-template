@@ -44,7 +44,9 @@ Setup
     ```
 7. Wait... :rocket:
 
-![discord-message](doc/discord-message.png)
+<p align="center">
+  <img src="docs/discord-message.png" alt="discord-message" width="500">
+</p>
 
 8. Connect to ArgoCD
     ```bash
@@ -58,7 +60,7 @@ Setup
     make forward-argocd token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
 
-![argocd-ui](doc/argocd-ui.png)
+![argocd-ui](docs/argocd-ui.png)
 
 9. Sample apps
     ```bash

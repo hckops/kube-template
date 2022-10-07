@@ -62,4 +62,4 @@ jobs:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           # markdown format
-          message: "> Repository: **${{ github.repository }}**\\n> Cluster:\\t\\t**${{ env.CLUSTER_NAME }}**\\n> Status:\\t\\t  **${{ steps.provision.outputs.status }}**"
+          message: "> Repository:  **${{ github.repository }}**\\n> Cluster:\\t\\t**${{ env.CLUSTER_NAME }}**\\n> Status:\\t\\t  **${{ steps.provision.outputs.status }}**"
