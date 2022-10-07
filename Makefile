@@ -13,15 +13,16 @@ check-param-%:
 ##############################
 
 CLUSTER_NAME := test-do-lon1
+CLUSTER_CONFIG := clusters/kube-$(CLUSTER_NAME).yaml
 KUBECONFIG_NAME := $(CLUSTER_NAME)-kubeconfig.yaml
 
 ##############################
 
 .PHONY: cluster-workflow
 cluster-workflow: check-param-from check-param-to check-param-status
-	sed -i 's/status: ${from}/status: ${to}/g' "clusters/kube-$(CLUSTER_NAME).yaml"
+	sed -i 's/status: ${from}/status: ${to}/g' $(CLUSTER_CONFIG)
 	git --no-pager diff
-	git commit -am "${status} cluster"
+	git commit $(CLUSTER_CONFIG) -m "${status} cluster"
 	git push origin main
 
 .PHONY: cluster-up
