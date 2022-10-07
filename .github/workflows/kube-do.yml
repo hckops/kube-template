@@ -9,6 +9,7 @@ on:
       - 'clusters/kube-*.yaml'
 
 env:
+  CLUSTER_NAME: test-do-lon1
   CLUSTER_CONFIG_PATH: clusters/kube-test-do-lon1.yaml
 
 jobs:
@@ -60,4 +61,5 @@ jobs:
         with:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: "Cluster ${{ github.repository }}: ${{ steps.provision.outputs.status }}"
+          # markdown format
+          message: "> Repository: **${{ github.repository }}**\\n> Cluster: **${{ env.CLUSTER_NAME }}**\\n> Status: **${{ steps.provision.outputs.status }}**"
