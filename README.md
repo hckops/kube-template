@@ -43,6 +43,9 @@ Setup
     make cluster-up
     ```
 7. Wait... :rocket:
+
+![discord-message](doc/discord-message.png)
+
 8. Connect to ArgoCD
     ```bash
     DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
@@ -55,7 +58,7 @@ Setup
     make forward-argocd token=${DIGITALOCEAN_ACCESS_TOKEN}
     ```
 
-![argocd-ui](argocd-ui.png)
+![argocd-ui](doc/argocd-ui.png)
 
 9. Sample apps
     ```bash
