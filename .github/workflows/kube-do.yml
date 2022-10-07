@@ -9,8 +9,7 @@ on:
       - 'clusters/kube-*.yaml'
 
 env:
-  CLUSTER_NAME: test-do-lon1
-  CLUSTER_CONFIG_PATH: clusters/kube-${{ env.CLUSTER_NAME }}.yaml
+  CLUSTER_CONFIG_PATH: clusters/kube-test-do-lon1.yaml
 
 jobs:
   # cluster provisioning and platform bootstrap
@@ -61,4 +60,4 @@ jobs:
         with:
           action: create-message
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: "> ${{ github.repository }}/${{ env.CLUSTER_NAME }}: ${{ steps.provision.outputs.status }}"
+          message: "Cluster ${{ github.repository }}: ${{ steps.provision.outputs.status }}"
