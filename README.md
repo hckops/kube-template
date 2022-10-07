@@ -67,3 +67,18 @@ Setup
     kubectl --kubeconfig test-do-lon1-kubeconfig.yaml -n examples \
       port-forward svc/hello-kubernetes-gitops 8091:80
     ```
+10. Alternatively, access the cluster from a container
+    ```bash
+    docker run --rm --name hck-tmp -it \
+      -e KUBECONFIG=/root/.kube/config \
+      -v ${PWD}/test-do-lon1-kubeconfig.yaml:/root/.kube/config \
+      hckops/kube-argo
+    
+    # login with kubeconfig
+    argocd login --core
+
+    # list apps
+    kubens argocd
+    kubectl get applications
+    argocd app list
+    ```
