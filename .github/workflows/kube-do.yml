@@ -52,7 +52,6 @@ jobs:
           kubeconfig: ${{ steps.provision.outputs.kubeconfig }}
           config-path: ${{ env.CLUSTER_CONFIG_PATH }}
           chart-path: ./charts/argocd-config
-          version: HEAD
 
       - name: Notification
         # notify also if previous steps failed
