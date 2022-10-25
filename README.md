@@ -65,18 +65,18 @@ Setup
 9. Sample apps
     ```bash
     # http://localhost:8090
-    kubectl --kubeconfig template-do-lon1-kubeconfig.yaml -n examples \
+    kubectl --kubeconfig clusters/template-do-lon1-kubeconfig.yaml -n examples \
       port-forward svc/guestbook-ui 8090:80
 
     # http://localhost:8091
-    kubectl --kubeconfig template-do-lon1-kubeconfig.yaml -n examples \
+    kubectl --kubeconfig clusters/template-do-lon1-kubeconfig.yaml -n examples \
       port-forward svc/hello-kubernetes-gitops 8091:80
     ```
 10. Alternatively, access the cluster from a container
     ```bash
     docker run --rm --name hck-tmp -it \
       -e KUBECONFIG=/root/.kube/config \
-      -v ${PWD}/template-do-lon1-kubeconfig.yaml:/root/.kube/config \
+      -v ${PWD}/clusters/template-do-lon1-kubeconfig.yaml:/root/.kube/config \
       hckops/kube-argo
     
     # login with kubeconfig
