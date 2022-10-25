@@ -32,6 +32,7 @@ cluster-up:
 .PHONY: cluster-down
 cluster-down:
 	@make cluster-status name=$(CLUSTER_NAME) from=UP to=DOWN status=STOP
+	@rm -fv $(KUBECONFIG_NAME)
 
 ##############################
 
