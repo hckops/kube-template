@@ -18,8 +18,8 @@ KUBECONFIG_NAME := clusters/$(CLUSTER_NAME)-kubeconfig.yaml
 
 ##############################
 
-.PHONY: cluster-workflow
-cluster-workflow: check-param-from check-param-to check-param-status
+.PHONY: cluster-status
+cluster-status: check-param-from check-param-to check-param-status
 	sed -i 's/status: ${from}/status: ${to}/g' $(CLUSTER_CONFIG)
 	git --no-pager diff
 	git commit $(CLUSTER_CONFIG) -m "${status} cluster"
@@ -27,11 +27,11 @@ cluster-workflow: check-param-from check-param-to check-param-status
 
 .PHONY: cluster-up
 cluster-up:
-	@make cluster-workflow name=$(CLUSTER_NAME) from=DOWN to=UP status=START
+	@make cluster-status name=$(CLUSTER_NAME) from=DOWN to=UP status=START
 
 .PHONY: cluster-down
 cluster-down:
-	@make cluster-workflow name=$(CLUSTER_NAME) from=UP to=DOWN status=STOP
+	@make cluster-status name=$(CLUSTER_NAME) from=UP to=DOWN status=STOP
 
 ##############################
 
