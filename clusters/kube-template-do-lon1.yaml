@@ -1,5 +1,5 @@
 version: 1
-name: test-do-lon1
+name: template-do-lon1
 provider: digitalocean
 status: UP
 
