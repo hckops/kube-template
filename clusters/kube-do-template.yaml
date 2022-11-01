@@ -1,5 +1,5 @@
 version: 1
-name: template-do-lon1
+name: do-template
 provider: digitalocean
 status: DOWN
 

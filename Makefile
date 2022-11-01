@@ -12,7 +12,7 @@ check-param-%:
 
 ##############################
 
-CLUSTER_NAME := template-do-lon1
+CLUSTER_NAME := do-template
 CLUSTER_CONFIG := clusters/kube-$(CLUSTER_NAME).yaml
 KUBECONFIG_NAME := clusters/$(CLUSTER_NAME)-kubeconfig.yaml
 

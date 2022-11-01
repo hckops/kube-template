@@ -6,11 +6,11 @@ on:
       - main
     paths:
       - '.github/workflows/kube-do.yml'
-      - 'clusters/kube-*.yaml'
+      - 'clusters/kube-do-template.yaml'
 
 env:
-  CLUSTER_NAME: template-do-lon1
-  CLUSTER_CONFIG_PATH: clusters/kube-template-do-lon1.yaml
+  CLUSTER_NAME: do-template
+  CLUSTER_CONFIG_PATH: clusters/kube-do-template.yaml
 
 jobs:
   # cluster provisioning and platform bootstrap
@@ -47,8 +47,8 @@ jobs:
         if: ${{ steps.provision.outputs.status == 'CREATE' }}
         uses: hckops/actions/bootstrap-action@main
         with:
-          gitops-ssh-key: ${{ secrets.GITOPS_SSH_KEY }}
           argocd-admin-password: ${{ secrets.ARGOCD_ADMIN_PASSWORD }}
+          argocd-git-ssh-key: ${{ secrets.ARGOCD_HCKBOT_SSH_KEY }}
           kubeconfig: ${{ steps.provision.outputs.kubeconfig }}
           chart-path: ./charts/argocd-config
           config-path: ${{ env.CLUSTER_CONFIG_PATH }}

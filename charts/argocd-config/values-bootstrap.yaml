@@ -2,15 +2,15 @@
 # see https://github.com/hckops/actions/blob/main/bootstrap-action/entrypoint.sh
 argocd:
   configs:
-    secret:
-      createSecret: true
-      argocdServerAdminPassword: "INVALID_PASSWORD"
     credentialTemplates:
       # every repositories in the same org (url match) will use this credential
       ssh-creds:
         url: git@github.com:hckops
-        sshPrivateKey: "INVALID_KEY"
+        sshPrivateKey: INVALID_KEY
     repositories:
       gitops-repo:
         url: git@github.com:hckops/kube-template.git
         name: gitops-repo
+    secret:
+      createSecret: true
+      argocdServerAdminPassword: INVALID_PASSWORD
