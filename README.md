@@ -18,8 +18,8 @@ Setup
     ```
 3. Rename cluster name and definition `clusters/kube-<CLUSTER_NAME>.yaml`
     ```bash
-    grep -Rl --exclude-dir=.git "template-do-lon1" . | xargs \
-      sed -i "s|template-do-lon1|<CLUSTER_NAME>|g"
+    grep -Rl --exclude-dir=.git "do-template" . | xargs \
+      sed -i "s|do-template|<CLUSTER_NAME>|g"
     ```
 4. Override the credential template with the right owner
     ```diff
@@ -65,18 +65,18 @@ Setup
 9. Sample apps
     ```bash
     # http://localhost:8090
-    kubectl --kubeconfig clusters/template-do-lon1-kubeconfig.yaml -n examples \
+    kubectl --kubeconfig clusters/do-template-kubeconfig.yaml -n examples \
       port-forward svc/guestbook-ui 8090:80
 
     # http://localhost:8091
-    kubectl --kubeconfig clusters/template-do-lon1-kubeconfig.yaml -n examples \
+    kubectl --kubeconfig clusters/do-template-kubeconfig.yaml -n examples \
       port-forward svc/hello-kubernetes-gitops 8091:80
     ```
 10. Alternatively, access the cluster from a container
     ```bash
     docker run --rm --name hck-tmp -it \
       -e KUBECONFIG=/root/.kube/config \
-      -v ${PWD}/clusters/template-do-lon1-kubeconfig.yaml:/root/.kube/config \
+      -v ${PWD}/clusters/do-template-kubeconfig.yaml:/root/.kube/config \
       hckops/kube-argo
     
     # login with kubeconfig
