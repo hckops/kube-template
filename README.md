@@ -29,7 +29,7 @@ Setup
     ```
 5. Add the following action secrets
     * `DIGITALOCEAN_ACCESS_TOKEN` required to privision a cluster with [DigitalOcean](https://cloud.digitalocean.com)
-    - `GITOPS_SSH_KEY` and `ARGOCD_ADMIN_PASSWORD` required to bootstrap this platform with [ArgoCD](https://argo-cd.readthedocs.io/en/stable)
+    - `ARGOCD_ADMIN_PASSWORD` and `ARGOCD_GIT_SSH_KEY` required to bootstrap this platform with [ArgoCD](https://argo-cd.readthedocs.io/en/stable)
     - `DISCORD_WEBHOOK_URL` optional, to notify the status in a Discord channel
     - for more info see [workflow](.github/workflows/kube-do.yml) and [hckops/actions](https://github.com/hckops/actions)
 6. Update the cluster definition and push all the changes
