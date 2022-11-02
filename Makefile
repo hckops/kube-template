@@ -36,10 +36,10 @@ cluster-down:
 
 ##############################
 
-# without check-param-token: optional
 .PHONY: kube-config
 kube-config: require-doctl
-	@doctl kubernetes cluster kubeconfig show $(CLUSTER_NAME) --access-token ${token} > $(KUBECONFIG_NAME)
+	@doctl auth init
+	@doctl kubernetes cluster kubeconfig show $(CLUSTER_NAME) > $(KUBECONFIG_NAME)
 
 .PHONY: forward-argocd
 forward-argocd: require-kubectl kube-config

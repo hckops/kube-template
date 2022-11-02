@@ -50,14 +50,12 @@ Setup
 
 8. Connect to ArgoCD
     ```bash
-    DIGITALOCEAN_ACCESS_TOKEN=<MY_ACCESS_TOKEN>
-
     # download kubeconfig
-    make kube-config token=${DIGITALOCEAN_ACCESS_TOKEN}
+    make kube-config
 
     # https://localhost:8080
     # [admin|<ARGOCD_ADMIN_PASSWORD>]
-    make forward-argocd token=${DIGITALOCEAN_ACCESS_TOKEN}
+    make forward-argocd
     ```
 
 ![argocd-ui](docs/argocd-ui.png)
