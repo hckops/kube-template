@@ -1,0 +1,11 @@
+version: 1
+
+# TODO https://github.com/dependabot/dependabot-core/issues/2237
+dependencies:
+  - name: "Argo CD"
+    source:
+      file: charts/argocd-config/Chart.yaml
+      path: dependencies[0].version
+    repository:
+      type: artifacthub
+      name: argo/argo-cd
