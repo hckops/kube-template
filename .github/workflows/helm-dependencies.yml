@@ -27,5 +27,3 @@ jobs:
           config-path: dependencies.yaml
           user-email: "hckbot@users.noreply.github.com"
           user-name: "hckbot"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
