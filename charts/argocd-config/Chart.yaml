@@ -2,10 +2,9 @@
 apiVersion: v2
 name: argocd-config
 version: 0.1.0
-
 dependencies:
   # https://github.com/argoproj/argo-helm/releases?q=argo-cd
   - name: argo-cd
     alias: argocd
-    version: 5.13.0
+    version: 5.13.6
     repository: https://argoproj.github.io/argo-helm
