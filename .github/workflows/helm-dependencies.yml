@@ -24,8 +24,8 @@ jobs:
       - name: Helm Dependencies
         uses: hckops/actions/helm-dependencies-action@main
         with:
+          config-path: dependencies.yaml
           user-email: "hckbot@users.noreply.github.com"
           user-name: "hckbot"
-          config-path: dependencies.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
