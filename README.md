@@ -1,6 +1,7 @@
 # kube-template
 
 [![kube-do](https://github.com/hckops/kube-template/actions/workflows/kube-do.yml/badge.svg)](https://github.com/hckops/kube-template/actions/workflows/kube-do.yml)
+[![helm-dependencies](https://github.com/hckops/kube-template/actions/workflows/helm-dependencies.yml/badge.svg)](https://github.com/hckops/kube-template/actions/workflows/helm-dependencies.yml)
 
 > *Spin-up a platform with a git push!*
 
