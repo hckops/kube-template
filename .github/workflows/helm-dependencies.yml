@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Helm Dependencies
-        uses: hckops/actions/helm-dependencies-action@v0.9.4
+        uses: hckops/actions/helm-dependencies-action@v0.9.5
         with:
           config-path: dependencies.yaml
           user-email: "hckbot@users.noreply.github.com"
