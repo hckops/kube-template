@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+
+  hck-template:
+    container_name: local-hck-template
+    image: hckops/kube-argo:latest
+    hostname: hck
+    # https://robinwinslow.uk/fix-docker-networking-dns
+    # https://stackoverflow.com/questions/49998099/dns-not-working-within-docker-containers-when-host-uses-dnsmasq-and-googles-dns
+    network_mode: host
+    # docker run -i
+    stdin_open: true
+    # docker run -t
+    tty: true
+    environment:
+      - KUBECONFIG=/root/.kube/config
+    volumes:
+      - ${PWD}/clusters/do-template-kubeconfig.yaml:/root/.kube/config

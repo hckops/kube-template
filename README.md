@@ -73,10 +73,16 @@ Setup
     ```
 10. Alternatively, access the cluster from a container
     ```bash
+    # use "--network host" to solve dns issues locally or edit "/etc/docker/daemon.json"
     docker run --rm --name hck-tmp -it \
       -e KUBECONFIG=/root/.kube/config \
       -v ${PWD}/clusters/do-template-kubeconfig.yaml:/root/.kube/config \
       hckops/kube-argo
+    
+    # with docker-compose
+    docker-compose up -d
+    docker exec -it local-hck-template bash
+    docker-compose down -v
     
     # login with kubeconfig
     argocd login --core
