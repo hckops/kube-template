@@ -27,11 +27,11 @@ cluster-status: check-param-from check-param-to check-param-status
 
 .PHONY: cluster-up
 cluster-up:
-	@make cluster-status name=$(CLUSTER_NAME) from=DOWN to=UP status=START
+	@$(MAKE) -s cluster-status name=$(CLUSTER_NAME) from=DOWN to=UP status=START
 
 .PHONY: cluster-down
 cluster-down:
-	@make cluster-status name=$(CLUSTER_NAME) from=UP to=DOWN status=STOP
+	@$(MAKE) -s cluster-status name=$(CLUSTER_NAME) from=UP to=DOWN status=STOP
 	@rm -fv $(KUBECONFIG_NAME)
 
 ##############################
