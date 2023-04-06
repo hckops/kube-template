@@ -8,6 +8,7 @@ services:
     hostname: hck
     # https://robinwinslow.uk/fix-docker-networking-dns
     # https://stackoverflow.com/questions/49998099/dns-not-working-within-docker-containers-when-host-uses-dnsmasq-and-googles-dns
+    # see "/var/snap/docker/current/config/daemon.json" https://github.com/docker-archive/docker-snap/issues/22#issuecomment-423361607
     network_mode: host
     # docker run -i
     stdin_open: true
