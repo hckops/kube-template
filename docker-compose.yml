@@ -9,6 +9,7 @@ services:
     # https://robinwinslow.uk/fix-docker-networking-dns
     # https://stackoverflow.com/questions/49998099/dns-not-working-within-docker-containers-when-host-uses-dnsmasq-and-googles-dns
     # see "/var/snap/docker/current/config/daemon.json" https://github.com/docker-archive/docker-snap/issues/22#issuecomment-423361607
+    # see "/etc/resolv.conf" https://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host/918568#918568
     network_mode: host
     # docker run -i
     stdin_open: true
