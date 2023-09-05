@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Helm Lint
         uses: hckops/actions/helm-lint-action@v0.10.8
