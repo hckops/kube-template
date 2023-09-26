@@ -36,7 +36,7 @@ jobs:
           enabled: true
           wait: true
           # for development only: if "true" bootstrap skipping cluster creation
-          skip-create: true
+          skip-create: false
 
       - name: Output
         run: |
