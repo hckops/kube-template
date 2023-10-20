@@ -7,7 +7,7 @@ digitalocean:
   cluster:
     count: 1
     region: lon1
-    size: s-1vcpu-2gb
+    size: s-2vcpu-4gb
 
 bootstrap:
   helmValueFile: values-bootstrap.yaml

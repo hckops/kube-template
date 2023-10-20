@@ -91,6 +91,9 @@ Setup
     kubens argocd
     kubectl get applications
     argocd app list
+
+    # watch resources
+    kubectl klock -n examples pods
     ```
 11. Destroy the cluster
     ```bash
