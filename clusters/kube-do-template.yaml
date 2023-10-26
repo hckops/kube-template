@@ -1,13 +1,14 @@
 version: 1
 name: do-template
 provider: digitalocean
-status: DOWN
+status: UP
 
 digitalocean:
   cluster:
     count: 1
     region: lon1
-    size: s-2vcpu-4gb
+    # $48/month
+    size: s-4vcpu-8gb
 
 bootstrap:
   helmValueFile: values-bootstrap.yaml
