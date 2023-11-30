@@ -4,3 +4,5 @@ versions:
       gitRepo: HEAD
     helloKubernetes:
       gitRepo: HEAD
+    kotlinFun:
+      gitRepo: HEAD

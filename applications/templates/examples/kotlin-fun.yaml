@@ -1,0 +1,19 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kotlin-fun
+spec:
+  project: examples
+  source:
+    repoURL: https://github.com/niqdev/kotlin-fun.git
+    path: helm-charts/kotlin-fun-http
+    targetRevision: {{ .Values.versions.examples.kotlinFun.gitRepo }}
+    # overrides https://github.com/niqdev/kotlin-fun/blob/main/helm-charts/kotlin-fun-http/values.yaml
+    helm:
+      parameters:
+      - name: namespace
+        value: "examples"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: examples
