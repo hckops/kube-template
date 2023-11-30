@@ -7,6 +7,7 @@ spec:
   sourceRepos:
     - https://github.com/argoproj/argocd-example-apps.git
     - https://github.com/paulbouwer/hello-kubernetes.git
+    - https://github.com/niqdev/kotlin-fun.git
   destinations:
     - namespace: examples
       server: https://kubernetes.default.svc
