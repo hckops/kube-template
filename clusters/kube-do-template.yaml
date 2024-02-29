@@ -1,7 +1,7 @@
 version: 1
 name: do-template
 provider: digitalocean
-status: UP
+status: DOWN
 
 digitalocean:
   cluster:
