@@ -27,7 +27,7 @@ jobs:
         uses: hckops/actions/helm-lint-action@v0.11.0
 
       - name: Provision
-        uses: hckops/actions/kube-do-action@v0.11.0
+        uses: hckops/actions/kube-do-action@main
         id: provision
         with:
           github-token: ${{ github.token }}
