@@ -9,6 +9,7 @@ digitalocean:
     region: lon1
     # $48/month
     size: s-4vcpu-8gb
+    version: 1.29.6-do.0
 
 bootstrap:
   helmValueFile: values-bootstrap.yaml
